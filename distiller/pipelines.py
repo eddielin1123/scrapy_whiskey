@@ -15,7 +15,7 @@ class MongoDBPipeline:
         db_uri = spider.settings.get('MONGODB_URI')
         db_name = spider.settings.get('MONGODB_DB_NAME')
         db_coll = spider.settings.get('MONGODB_DB_COL')
-        self.db_client = MongoClient('mongodb://eddie:eb102@35.194.200.244:27017/')
+        self.db_client = MongoClient(f'mongodb://eddie:{password}@35.194.200.244:27017/')
         self.db = self.db_client[db_name][db_coll]
 
     def process_item(self, item, spider):
@@ -29,6 +29,7 @@ class MongoDBPipeline:
     def close_spider(self, spider):
         self.db_client.close()
 
+password = 'eb102'
 # class CSVPipeline(object):
 #
 #   def __init__(self):
